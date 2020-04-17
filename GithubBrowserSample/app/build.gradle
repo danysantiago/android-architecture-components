@@ -21,6 +21,7 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'kotlin-allopen'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
+apply plugin: 'dagger.hilt.android.plugin'
 
 allOpen {
     // allows mocking for classes w/o directly opening them for release builds
@@ -87,15 +88,17 @@ dependencies {
     implementation deps.glide.runtime
 
     implementation deps.dagger.runtime
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
+    implementation "com.google.dagger:hilt-android:DEV-SNAPSHOT"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
+    implementation deps.dagger.runtime
     implementation deps.constraint_layout
     implementation deps.kotlin.stdlib
 
     implementation deps.timber
 
-    kapt deps.dagger.android_support_compiler
     kapt deps.dagger.compiler
+    kapt "com.google.dagger:hilt-android-compiler:DEV-SNAPSHOT"
+    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha01"
     kapt deps.room.compiler
     kapt deps.lifecycle.compiler
 
